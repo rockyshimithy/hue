@@ -3,3 +3,4 @@ beautifulsoup4==4.8.1
 ipdb==0.12.2
 aiohttp==3.6.2
 aiofiles==0.4.0
+uvloop==0.14.0
