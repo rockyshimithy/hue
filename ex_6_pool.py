@@ -1,6 +1,6 @@
 import os, sys
 from time import time
-from multiprocessing import Pool #
+from multiprocessing import Pool
 
 import requests
 from bs4 import BeautifulSoup as bs
@@ -36,20 +36,11 @@ if __name__ == '__main__':
 
     urls = get_urls('https://www.dafiti.com.br/calcados-masculinos/botas/')
 
-    workers = Pool(5) #
+    workers = Pool(8)
 
     tasks = [(i, url) for i, url in enumerate(urls)]
 
-    # sync
-    result = workers.map(get_product_info, tasks) #
-    #print(result)
-
-    # async
-    #result = workers.map_async(get_product_info, tasks) #
-    #print('------------COMEÇA')
-    #result.wait() #
-    #print('------------TERMINA')
-    #print(result.get()) #
+    workers.map(get_product_info, tasks)
 
     write_on_file(os.path.basename(sys.argv[0]), time() - start)
 

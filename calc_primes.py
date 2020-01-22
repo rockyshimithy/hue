@@ -15,7 +15,7 @@ def time_elapsed_by_prime(n):
 
 def main(workers):
     start = time.perf_counter()
-    with ProcessPoolExecutor(max_workers=workers) as execs: #
+    with ProcessPoolExecutor(max_workers=workers) as execs:
         process = {execs.submit(time_elapsed_by_prime, n): n for n in NUMBERS}
 
         for future in as_completed(process):

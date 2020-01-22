@@ -9,7 +9,8 @@ from utils import awrite_on_file
 loop = asyncio.get_event_loop()
 
 
-# coroutine
+#@asyncio.coroutine
+#yield from ...
 async def get_urls(category_url):
     client = aiohttp.ClientSession(loop=loop)
     async with client.get(category_url) as response:
@@ -44,16 +45,16 @@ if __name__ == '__main__':
     
     start = time()
 
-    urls = loop.run_until_complete( #
+    urls = loop.run_until_complete(
         get_urls('https://www.dafiti.com.br/calcados-masculinos/botas/')
     )
 
-    tasks = [ asyncio.ensure_future(get_product_info(i, url)) for i, url in enumerate(urls) ] #
+    tasks = [ asyncio.ensure_future(get_product_info(i, url)) for i, url in enumerate(urls) ]
 
-    loop.run_until_complete(asyncio.wait(tasks)) #
+    loop.run_until_complete(asyncio.wait(tasks))
     
     loop.run_until_complete(
         awrite_on_file(os.path.basename(sys.argv[0]), time() - start)
     )
     
-    loop.close() #
+    loop.close()

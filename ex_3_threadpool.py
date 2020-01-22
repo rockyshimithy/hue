@@ -42,11 +42,12 @@ if __name__ == '__main__':
             executor.submit(get_product_info, i, url)
             for i, url in enumerate(urls)
         ]
-    # completed, _ = wait(futures) #
+    # completed, _ = wait(futures)
 
     # for future in completed:
     #     print(future.result())
-    for future in as_completed(futures): #
+
+    for future in as_completed(futures):
         print(future.result())
 
     write_on_file(os.path.basename(sys.argv[0]), time() - start)

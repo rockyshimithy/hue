@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     tasks = [ get_product_info(i, url) for i, url in enumerate(urls) ]
 
-    loop.run_until_complete(asyncio.gather(*tasks)) #
+    loop.run_until_complete(asyncio.gather(*tasks))
     
     loop.run_until_complete(
         awrite_on_file(os.path.basename(sys.argv[0]), time() - start)

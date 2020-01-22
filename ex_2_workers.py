@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup as bs
 
 from utils import write_on_file
 
-event = Event() #
+event = Event()
 queue = Queue()
 
 
@@ -22,7 +22,7 @@ class Worker(Thread):
         # print(self.name, 'started')
 
     def run(self):
-        event.wait() #
+        event.wait()
         i = 0
         while not self.queue.empty():
             product = self.queue.get()
@@ -34,7 +34,7 @@ class Worker(Thread):
             self._target(i, product)
             i+=1
 
-    def join(self): #
+    def join(self):
         while not self._stoped:
             sleep(0.1)
 
@@ -47,7 +47,7 @@ def get_urls(category_url):
         if p.attrs['href']:
             queue.put(p.attrs['href'])
 
-    event.set() #
+    event.set()
     queue.put('Kill')
 
 def get_product_info(i, url):
@@ -82,10 +82,10 @@ if __name__ == '__main__':
     thrs = get_pool(8)
 
     # print('starts')
-    [th.start() for th in thrs] #
+    [th.start() for th in thrs]
 
     # print('joins')
-    [th.join() for th in thrs] #
+    [th.join() for th in thrs]
 
     write_on_file(os.path.basename(sys.argv[0]), time() - start)
 
