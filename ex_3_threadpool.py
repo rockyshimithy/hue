@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
     urls = get_urls('https://www.dafiti.com.br/calcados-masculinos/botas/')
 
-    with ThreadPoolExecutor(max_workers=10) as executor:
+    with ThreadPoolExecutor(max_workers=8) as executor:
         futures = [
             executor.submit(get_product_info, i, url)
             for i, url in enumerate(urls)

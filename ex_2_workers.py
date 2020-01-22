@@ -13,7 +13,7 @@ queue = Queue()
 
 
 class Worker(Thread):
-    def __init__(self, target, queue, *, name='Worker'):
+    def __init__(self, target, queue, name='Worker'):
         super().__init__()
         self.name = name
         self.queue = queue
